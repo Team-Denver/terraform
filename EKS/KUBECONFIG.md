@@ -27,21 +27,5 @@ kubectl get svc
 
 aws eks --region us-east-1 update-kubeconfig --name poc-adot-with-eks   
 
-oidc_id=$(aws eks describe-cluster --name poc-adot-with-eks --query "cluster.identity.oidc.issuer" --output text | cut -d '/' -f 5)
-
-aws iam list-open-id-connect-providers | grep $oidc_id | cut -d "/" -f4
-
-   
-aws eks describe-cluster \
-  --name poc-adot-with-eks \
-  --query "cluster.identity.oidc.issuer" \
-  --output text
-
-https://oidc.eks.us-east-1.amazonaws.com/id/
-
-
-kubectl annotate serviceaccount ebs-csi-controller-sa \
-    -n kube-system \
-    eks.amazonaws.com/role-arn=arn:aws:iam::475600362560:role/AmazonEKS_EBS_CSI_DriverRole
 
 

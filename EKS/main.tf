@@ -18,3 +18,5 @@ locals {
   cluster_name = "poc-adot-with-eks"
 }
 
+
+

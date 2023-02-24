@@ -1,4 +1,12 @@
 terraform {
+  backend "s3" {
+    
+    bucket = "poc-adot-remote-state"
+    key = "terraform/terraform.tfstate"
+    region = "us-east-1"
+    encrypt = true
+    
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
