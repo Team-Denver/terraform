@@ -5,9 +5,9 @@ module "eks" {
   cluster_name    = local.cluster_name
   cluster_version = "1.24"
 
-  vpc_id     = data.aws_vpc.poc-vpc.id
-  control_plane_subnet_ids = tolist([data.aws_subnet.poc-vpc-private-us-east-1a.id, data.aws_subnet.poc-vpc-private-us-east-1b.id])
-  subnet_ids = tolist([data.aws_subnet.poc-vpc-public-us-east-1a.id, data.aws_subnet.poc-vpc-public-us-east-1b.id])
+  vpc_id     = module.vpc.vpc_id
+  control_plane_subnet_ids = module.vpc.private_subnets
+  subnet_ids = module.vpc.public_subnets
   cluster_endpoint_public_access = true
 
   eks_managed_node_group_defaults = {
@@ -36,4 +36,6 @@ module "eks" {
       desired_size = 1
     }
   }
+
+  depends_on = [ module.vpc ]
 }
