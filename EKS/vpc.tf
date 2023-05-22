@@ -41,5 +41,3 @@ module "vpc" {
 # data "aws_subnet" "poc-vpc-public-us-east-1b"{
 #   id = "subnet-0c24208d399fbb90e"
 # }
-
-
